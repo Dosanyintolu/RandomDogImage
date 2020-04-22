@@ -9,32 +9,45 @@
 import Foundation
 import UIKit
 
+enum DogEndPoint {
+    
+    case http
+    case randomImageForBreed(String)
+    case listAllBreeds
 
-enum DogEndPoint: String {
-    
-    case http = "https://dog.ceo/api/breeds/image/random"
-    
     var url: URL{
-        return URL(string: self.rawValue)!
+        return URL(string: stringValue)!
+    }
+    
+    var stringValue: String {
+        switch self {
+        case .http:
+            return "https://dog.ceo/api/breeds/image/random"
+        case .randomImageForBreed(let breed):
+            return "https://dog.ceo/api/breed/\(breed)/images"
+        case .listAllBreeds:
+            return "https://dog.ceo/api/breeds/list/all"
+        }
     }
 }
 
-func requestImageFile(url: URL, completionHandler: @escaping(UIImage?, Error?) -> Void) {
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+func requestImageFile(breed: String, completionHandler: @escaping(UIImage?, Error?) -> Void) {
+    
+    let randomEndPoint = DogEndPoint.randomImageForBreed(breed).url
+    let task = URLSession.shared.dataTask(with: randomEndPoint) { (data, response, error) in
         guard let data = data else {
             completionHandler(nil, error)
             return
         }
         let downloadedDogImage = UIImage(data: data)
             completionHandler(downloadedDogImage, nil)
-    }
+        }
         task.resume()
 }
-
-func requestRandomImage(url:URL, completionHandler: @escaping (Error?, DogImage?) -> Void) {
+func requestRandomImage(completionHandler: @escaping (Error?, DogImage?) -> Void) {
            
-           let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let randomEndPoint = DogEndPoint.http.url
+           let task = URLSession.shared.dataTask(with: randomEndPoint) { (data, response, error) in
                guard let data = data else {
                    completionHandler(error, nil)
                    return
@@ -42,6 +55,27 @@ func requestRandomImage(url:URL, completionHandler: @escaping (Error?, DogImage?
             let decoder = JSONDecoder()
             let imageData = try! decoder.decode(DogImage.self, from: data)
             completionHandler(nil, imageData)
+    }
+    task.resume()
+}
+
+func requestBreedList(completionHandler: @escaping (Error?, BreedList?) -> Void) {
+    let randomBreed = DogEndPoint.listAllBreeds.url
+    let task = URLSession.shared.dataTask(with: randomBreed) {(data, response, error) in
+        guard let data = data else {
+            completionHandler(error,nil)
+            return
+        }
+        print(data)
+        let decoder = JSONDecoder()
+        let dogData: BreedList
+        
+        do {
+            dogData = try decoder.decode(BreedList.self, from: data)
+            completionHandler(nil, dogData)
+        } catch {
+            print(error)
+        }
     }
     task.resume()
 }

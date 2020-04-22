@@ -14,7 +14,7 @@
 		76FB3C17244D573900268538 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76FB3C15244D573900268538 /* Main.storyboard */; };
 		76FB3C19244D573A00268538 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76FB3C18244D573A00268538 /* Assets.xcassets */; };
 		76FB3C1C244D573A00268538 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76FB3C1A244D573A00268538 /* LaunchScreen.storyboard */; };
-		76FB3C24244D609400268538 /* DogImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FB3C23244D609400268538 /* DogImage.swift */; };
+		76FB3C24244D609400268538 /* DogStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FB3C23244D609400268538 /* DogStruct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		76FB3C18244D573A00268538 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76FB3C1B244D573A00268538 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76FB3C1D244D573A00268538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		76FB3C23244D609400268538 /* DogImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogImage.swift; sourceTree = "<group>"; };
+		76FB3C23244D609400268538 /* DogStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogStruct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +64,7 @@
 		76B53596244E47F40006F243 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				76FB3C23244D609400268538 /* DogImage.swift */,
+				76FB3C23244D609400268538 /* DogStruct.swift */,
 				76B53597244E4A4C0006F243 /* DogAPI.swift */,
 			);
 			path = Model;
@@ -172,7 +172,7 @@
 				76FB3C14244D573900268538 /* ViewController.swift in Sources */,
 				76FB3C10244D573900268538 /* AppDelegate.swift in Sources */,
 				76FB3C12244D573900268538 /* SceneDelegate.swift in Sources */,
-				76FB3C24244D609400268538 /* DogImage.swift in Sources */,
+				76FB3C24244D609400268538 /* DogStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

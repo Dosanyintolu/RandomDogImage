@@ -13,7 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var dogImageView: UIImageView!
     @IBOutlet weak var dogImageButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
-    
+    @IBOutlet weak var pickerView: UIPickerView!
+    let breeds: [String] = ["pitbull", "poodle"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,19 +22,14 @@ class ViewController: UIViewController {
         
         dogImageButton.layer.cornerRadius = 8
         clearButton.layer.cornerRadius = 8
+        pickerView.dataSource = self
+        pickerView.delegate = self
     }
     
     
     @IBAction func fetchDogImage(_ sender: Any) {
         
-
-        guard let url = URL(string: DogEndPoint.http.rawValue) else {
-            print("Bad URL")
-            return
-        }
-        
-        requestRandomImage(url: url, completionHandler:handleRandomImageResponse(error:imageData:))
-            
+        requestRandomImage(completionHandler:handleRandomImageResponse(error:imageData:))
     }
     
     func handleImageFileResponse(image: UIImage?, error: Error?) {
@@ -43,11 +39,14 @@ class ViewController: UIViewController {
     }
     
     func handleRandomImageResponse(error: Error?, imageData: DogImage?) {
-        guard let dogURL = URL(string: imageData?.message ?? "") else {
-                       return
-                   }
-                   requestImageFile(url: dogURL, completionHandler: self.handleImageFileResponse(image:error:))
+        
+        requestImageFile(breed:breeds[1],completionHandler: self.handleImageFileResponse(image:error:))
                }
+    
+    func handleBreedResponse(error: Error?, dogData: BreedList?) {
+        
+
+    }
 
     @IBAction func clearImageFunction(_ sender: Any) {
         
@@ -60,6 +59,21 @@ class ViewController: UIViewController {
         } else {
             dogImageView.image = nil
         }
+    }
+}
+
+extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return breeds.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return breeds[row]
     }
 }
 

@@ -16,52 +16,64 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pc7-LD-iAX">
-                                <rect key="frame" x="20" y="61" width="374" height="501"/>
+                                <rect key="frame" x="20" y="44" width="374" height="529"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="JCv-SH-k5o"/>
+                                    <constraint firstAttribute="height" constant="529" id="Kv7-mf-KtD"/>
+                                </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="1RK-26-mOt">
-                                <rect key="frame" x="121" y="606" width="172" height="99"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yfd-UY-foz">
+                                <rect key="frame" x="20" y="573" width="374" height="269"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxj-fv-8zf">
-                                        <rect key="frame" x="0.0" y="0.0" width="172" height="34"/>
-                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="bZo-q4-Xiz"/>
-                                            <constraint firstAttribute="width" constant="172" id="hDl-d4-lyt"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Dog Image">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="fetchDogImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3gb-Di-1Xo"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKN-vQ-qcm">
-                                        <rect key="frame" x="0.0" y="65" width="172" height="34"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="172" id="L5k-nv-cNE"/>
-                                            <constraint firstAttribute="height" constant="34" id="MWJ-Um-YNP"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Clear">
-                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="clearImageFunction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2L0-79-Kp8"/>
-                                        </connections>
-                                    </button>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uGA-8k-s2C">
+                                        <rect key="frame" x="27" y="0.0" width="320" height="216"/>
+                                    </pickerView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="86" translatesAutoresizingMaskIntoConstraints="NO" id="wQe-FK-ggW">
+                                        <rect key="frame" x="0.0" y="224" width="374" height="45"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxj-fv-8zf">
+                                                <rect key="frame" x="0.0" y="0.0" width="144" height="45"/>
+                                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="Whh-CE-KeA"/>
+                                                    <constraint firstAttribute="width" constant="144" id="az4-il-Fmj"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="Dog Image">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="fetchDogImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3gb-Di-1Xo"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKN-vQ-qcm">
+                                                <rect key="frame" x="230" y="0.0" width="144" height="45"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="144" id="plD-QK-kIZ"/>
+                                                    <constraint firstAttribute="height" constant="45" id="tK1-eN-uW1"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="Clear">
+                                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="clearImageFunction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2L0-79-Kp8"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="1RK-26-mOt" firstAttribute="top" secondItem="pc7-LD-iAX" secondAttribute="bottom" constant="44" id="0q7-Km-Wlw"/>
-                            <constraint firstItem="pc7-LD-iAX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="17" id="1Gm-7m-lXZ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1RK-26-mOt" secondAttribute="bottom" constant="157" id="2bW-eR-Uxj"/>
-                            <constraint firstItem="1RK-26-mOt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="121" id="8Oh-qx-ZqL"/>
+                            <constraint firstItem="yfd-UY-foz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Lg6-4L-fP1"/>
                             <constraint firstItem="pc7-LD-iAX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="NId-UW-rm0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pc7-LD-iAX" secondAttribute="trailing" constant="20" id="U0O-x7-SIk"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1RK-26-mOt" secondAttribute="trailing" constant="121" id="qdA-oK-WPy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yfd-UY-foz" secondAttribute="trailing" constant="20" id="VH3-0C-l6y"/>
+                            <constraint firstItem="pc7-LD-iAX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="q91-v6-wm9"/>
+                            <constraint firstItem="yfd-UY-foz" firstAttribute="top" secondItem="pc7-LD-iAX" secondAttribute="bottom" id="qXV-d7-NFx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yfd-UY-foz" secondAttribute="bottom" constant="20" id="x3q-qz-br1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -69,6 +81,7 @@
                         <outlet property="clearButton" destination="kKN-vQ-qcm" id="HDt-Lu-iuB"/>
                         <outlet property="dogImageButton" destination="Mxj-fv-8zf" id="vmI-ZP-MwB"/>
                         <outlet property="dogImageView" destination="pc7-LD-iAX" id="0Ul-NH-e2k"/>
+                        <outlet property="pickerView" destination="uGA-8k-s2C" id="Ctt-F6-11u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
