@@ -31,12 +31,10 @@ class ViewController: UIViewController {
     
     
     @IBAction func fetchDogImage(_ sender: Any) {
-        requestRandomImage(completionHandler: self.handleRandomImageResponse(error:imageData:))
         DispatchQueue.main.async {
-        requestImageFile(breed:self.breeds[self.pickerView.selectedRow(inComponent: 0)],completionHandler: self.handleImageFileResponse(image:error:))
-        }
-        
+            requestRandomImage(breed: self.breeds[self.pickerView.selectedRow(inComponent: 0)], completionHandler: self.handleRandomImageResponse(error:imageData:))
     }
+}
     
     func handleImageFileResponse(image: UIImage?, error: Error?) {
         DispatchQueue.main.async {
@@ -48,6 +46,7 @@ class ViewController: UIViewController {
         guard let imageURL = URL(string: imageData?.message ?? "") else {
             return
         }
+        requestImageFile(url: imageURL, completionHandler: self.handleImageFileResponse(image:error:))
     }
     
     func handleBreedResponse(error: Error?, breeds: [String]) {
@@ -87,7 +86,7 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-         requestImageFile(breed:breeds[row],completionHandler: self.handleImageFileResponse(image:error:))
+        requestRandomImage(breed: breeds[row], completionHandler: handleRandomImageResponse(error:imageData:))
     }
 }
 

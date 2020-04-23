@@ -31,10 +31,9 @@ enum DogEndPoint {
     }
 }
 
-func requestImageFile(breed: String, completionHandler: @escaping(UIImage?, Error?) -> Void) {
+func requestImageFile(url: URL, completionHandler: @escaping(UIImage?, Error?) -> Void) {
     
-    let randomEndPoint = DogEndPoint.randomImageForBreed(breed).url
-    let task = URLSession.shared.dataTask(with: randomEndPoint) { (data, response, error) in
+    let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
         guard let data = data else {
             completionHandler(nil, error)
             return
@@ -44,17 +43,21 @@ func requestImageFile(breed: String, completionHandler: @escaping(UIImage?, Erro
         }
         task.resume()
 }
-func requestRandomImage(completionHandler: @escaping (Error?, DogImage?) -> Void) {
+func requestRandomImage(breed: String,completionHandler: @escaping (Error?, DogImage?) -> Void) {
            
-        let randomEndPoint = DogEndPoint.http.url
+        let randomEndPoint = DogEndPoint.randomImageForBreed(breed).url
            let task = URLSession.shared.dataTask(with: randomEndPoint) { (data, response, error) in
                guard let data = data else {
                    completionHandler(error, nil)
                    return
                }
             let decoder = JSONDecoder()
-            let imageData = try! decoder.decode(DogImage.self, from: data)
+            do {
+            let imageData = try decoder.decode(DogImage.self, from: data)
             completionHandler(nil, imageData)
+            } catch {
+                print(error.localizedDescription)
+            }
     }
     task.resume()
 }
