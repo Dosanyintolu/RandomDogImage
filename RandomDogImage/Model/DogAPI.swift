@@ -59,20 +59,19 @@ func requestRandomImage(completionHandler: @escaping (Error?, DogImage?) -> Void
     task.resume()
 }
 
-func requestBreedList(completionHandler: @escaping (Error?, BreedList?) -> Void) {
+func requestBreedList(completionHandler: @escaping (Error?, [String]) -> Void) {
     let randomBreed = DogEndPoint.listAllBreeds.url
     let task = URLSession.shared.dataTask(with: randomBreed) {(data, response, error) in
         guard let data = data else {
-            completionHandler(error,nil)
-            return
+            completionHandler(error,[])
+        return
         }
-        print(data)
         let decoder = JSONDecoder()
-        let dogData: BreedList
         
         do {
-            dogData = try decoder.decode(BreedList.self, from: data)
-            completionHandler(nil, dogData)
+            let dogData = try decoder.decode(BreedList.self, from: data)
+            let breeds = dogData.message.keys.map({$0})
+            completionHandler(nil, breeds)
         } catch {
             print(error)
         }

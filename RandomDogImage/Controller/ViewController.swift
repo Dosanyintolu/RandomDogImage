@@ -14,7 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var dogImageButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var pickerView: UIPickerView!
-    let breeds: [String] = ["pitbull", "poodle"]
+    var breeds: [String] = []
+     
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +25,17 @@ class ViewController: UIViewController {
         clearButton.layer.cornerRadius = 8
         pickerView.dataSource = self
         pickerView.delegate = self
+        
+        requestBreedList(completionHandler: handleBreedResponse(error:breeds:))
     }
     
     
     @IBAction func fetchDogImage(_ sender: Any) {
+        requestRandomImage(completionHandler: self.handleRandomImageResponse(error:imageData:))
+        DispatchQueue.main.async {
+        requestImageFile(breed:self.breeds[self.pickerView.selectedRow(inComponent: 0)],completionHandler: self.handleImageFileResponse(image:error:))
+        }
         
-        requestRandomImage(completionHandler:handleRandomImageResponse(error:imageData:))
     }
     
     func handleImageFileResponse(image: UIImage?, error: Error?) {
@@ -39,13 +45,17 @@ class ViewController: UIViewController {
     }
     
     func handleRandomImageResponse(error: Error?, imageData: DogImage?) {
-        
-        requestImageFile(breed:breeds[1],completionHandler: self.handleImageFileResponse(image:error:))
-               }
+        guard let imageURL = URL(string: imageData?.message ?? "") else {
+            return
+        }
+    }
     
-    func handleBreedResponse(error: Error?, dogData: BreedList?) {
+    func handleBreedResponse(error: Error?, breeds: [String]) {
+        self.breeds = breeds
         
-
+        DispatchQueue.main.async {
+            self.pickerView.reloadAllComponents()
+        }
     }
 
     @IBAction func clearImageFunction(_ sender: Any) {
@@ -74,6 +84,10 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return breeds[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+         requestImageFile(breed:breeds[row],completionHandler: self.handleImageFileResponse(image:error:))
     }
 }
 
