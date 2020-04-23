@@ -53,7 +53,7 @@ func requestRandomImage(breed: String,completionHandler: @escaping (Error?, DogI
                }
             let decoder = JSONDecoder()
             do {
-            let imageData = try decoder.decode(DogImage.self, from: data)
+                let imageData = try decoder.decode(DogImage.self, from: data)
             completionHandler(nil, imageData)
             } catch {
                 print(error.localizedDescription)

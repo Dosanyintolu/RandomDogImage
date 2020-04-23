@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     }
     
     func handleRandomImageResponse(error: Error?, imageData: DogImage?) {
-        guard let imageURL = URL(string: imageData?.message ?? "") else {
+        guard let imageURL = URL(string: imageData?.message.first ?? "") else {
             return
         }
         requestImageFile(url: imageURL, completionHandler: self.handleImageFileResponse(image:error:))
@@ -84,10 +84,7 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return breeds[row]
     }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        requestRandomImage(breed: breeds[row], completionHandler: handleRandomImageResponse(error:imageData:))
-    }
 }
+
 
 

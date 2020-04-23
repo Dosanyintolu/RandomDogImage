@@ -13,7 +13,7 @@ import Foundation
 struct DogImage: Codable {
     
     let status: String
-    let message: String
+    let message: [String]
 }
 
 struct BreedList: Codable {
